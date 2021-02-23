@@ -1,4 +1,5 @@
 {
+  "name": "simple-api",
   "dependencies": {
     "http-server": "^0.12.3"
   },

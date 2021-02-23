@@ -3,10 +3,12 @@
 
 // init project
 var express = require('express');
+var cors = require('cors')
 var app = express();
 
+app.use(cors())
 // http://expressjs.com/en/starter/basic-routing.html
-app.any("/", function (request, response) {
+app.all("/", function (request, response) {
   response.json({hello: 'world', postType: request.method});
 });
 

@@ -6,14 +6,14 @@ services:
     build:
       context: ./ui
       dockerfile: Dockerfile
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
+    # volumes:
+    #   - '.:/app'
+    #   - '/app/node_modules'
     ports:
       - '80:80'
       - '443:443'
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=dev
       - PORT=80
   api:
     container_name: simple-api
@@ -27,6 +27,4 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - PORT=3002
-    tty: true
-    command: ["yarn", "start:dev-remote-debug"]
 
