@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  ui:
+    container_name: simple-http-ui
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      - NODE_ENV=production
+      - PORT=80
+  api:
+    container_name: simple-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - '3002:3002'
+      - '9229:9229' #for node debugging
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - PORT=3002
+    tty: true
+    command: ["yarn", "start:dev-remote-debug"]
+
