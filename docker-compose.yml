@@ -7,8 +7,8 @@ services:
       context: ./ui
       dockerfile: Dockerfile
     # volumes:
-    #   - '.:/app'
-    #   - '/app/node_modules'
+    #   - '/app/node_modules' #this creates a cache on your local disk of the node_modules folders, to help speed up future work
+      # - './ui:/app'
     ports:
       - '80:80'
       - '443:443'
@@ -20,11 +20,13 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+    # volumes:
+      # - '/app/node_modules' #this creates a cache on your local disk of the node_modules folders, to help speed up future work
     ports:
       - '3002:3002'
       - '9229:9229' #for node debugging
     environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=dev
       - PORT=3002
+      # - CHOKIDAR_USEPOLLING=true
 
