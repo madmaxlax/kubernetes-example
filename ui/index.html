@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script>
-      async function getAPI() {
-        const result = await fetch("http://localhost:3002",
+
+<head>
+  <script>
+    async function getAPI() {
+      const result = await fetch("http://localhost:3002",
         {
           mode: "cors"
         }).then(response => response.json());
-        console.log("result: ", result);
-        document.getElementById("data").innerHTML += `
+      console.log("result: ", result);
+      document.getElementById("data").innerHTML += `
           <div>${JSON.stringify(result)}</div>
         `;
-      }
-      getAPI();
-    </script>
-  </head>
-  <body>
-      <h1>Quick UI API Example</h1>
-      <div id="data"></div>
-  </body>
+    }
+    getAPI();
+  </script>
+</head>
+
+<body>
+  <h1>Quick UI API Example</h1>
+  <div id="data">loading data</div>
+</body>
+
 </html>
